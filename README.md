@@ -18,7 +18,7 @@ Basic Gameplay:
 
 ### Resources
 
-- `[Rick & Morty API]`(https://rickandmortyapi.com/) for the Object Data.
+- `[Rick & Morty API](https://rickandmortyapi.com/)` for the Object Data.
 - `Axios API` for fetching said Data.
 
 ---
