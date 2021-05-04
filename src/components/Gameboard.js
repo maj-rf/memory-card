@@ -6,7 +6,13 @@ export default function Gameboard(props) {
       {props.deck.map((card) => {
         return (
           <li className="cards" key={card.id}>
-            <img src={card.image} alt={card.name}></img>
+            <img
+              className="images"
+              src={card.image}
+              alt={card.name}
+              id={card.id}
+              onClick={props.handleClick}
+            ></img>
             {card.name}
           </li>
         );
