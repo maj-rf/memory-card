@@ -13,7 +13,6 @@ export default function Gameboard(props) {
               id={card.id}
               onClick={props.handleClick}
             ></img>
-            {card.name}
           </li>
         );
       })}
