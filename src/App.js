@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import './App.css';
-import useData from './components/hooks/useData';
-import Gameboard from './components/Gameboard';
+import Gameboard from './components/Gameboard/Gameboard';
 import { shuffleDeck } from './utils/shuffleDeck';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+
 function App() {
-  const results = useData(
-    'https://rickandmortyapi.com/api/character/?name=morty&status=alive'
+  const { isLoading, error, data } = useQuery('mortys', () =>
+    axios('https://rickandmortyapi.com/api/character/?name=morty&status=alive')
   );
-  console.log(results?.results);
+
+  if (error) return <h1>{error.message}</h1>;
 
   return (
     <div className="App">
@@ -15,7 +19,11 @@ function App() {
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem optio quam
         vero cumque.
       </p>
-      <Gameboard results={results} />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <Gameboard data={data?.data.results} />
+      )}
     </div>
   );
 }
