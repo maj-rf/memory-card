@@ -9,6 +9,11 @@ function App() {
   const { isLoading, error, data } = useQuery('mortys', () =>
     axios('https://rickandmortyapi.com/api/character/?name=morty&status=alive')
   );
+  const [deck, setDeck] = useState([]);
+
+  const playRound = () => {
+    setDeck(shuffleDeck(data?.data.results));
+  };
 
   if (error) return <h1>{error.message}</h1>;
 
@@ -22,7 +27,7 @@ function App() {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <Gameboard data={data?.data.results} />
+        <Gameboard data={data?.data.results} playRound={playRound} />
       )}
     </div>
   );
