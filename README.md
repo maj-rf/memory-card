@@ -1,28 +1,3 @@
-# Project: Memory Card Game
-
-The Memory Card Game Project for the TOP Curriculum.
-Based on the TV Series, Rick & Morty.
-
-## Rules and Gameplay
-
-Your goal is to click all of the the possible cards at least once. Game ends when you choose an already clicked card. Highest possible score is 20.
-
-Basic Gameplay:
-
-1. At the beginning of the game, the deck is shuffled.
-2. Each round, you are able to choose one card.
-3. Deck is shuffled every time you choose a card.
-4. Proceed to next round if your card is not yet picked.
-5. You lose if you choose an already picked card.
-6. You win if you can score 20.
-
-### Resources
-
-- `[Rick & Morty API](https://rickandmortyapi.com/)` for the Object Data.
-- `Axios API` for fetching said Data.
-
----
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -34,10 +9,10 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
 ### `npm test`
 
@@ -56,13 +31,13 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
