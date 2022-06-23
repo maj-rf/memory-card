@@ -3,10 +3,9 @@ import Card from '../Card/Card';
 
 function Gameboard({ data, playRound }) {
   return (
-    <div>
-      <h2>Gameboard</h2>
+    <div className="gameboard">
       {data?.map((x) => (
-        <Card key={x.id} morty={x} playRound={playRound} />
+        <Card key={x.id} morty={x} playRound={() => playRound(x.id)} />
       ))}
     </div>
   );
