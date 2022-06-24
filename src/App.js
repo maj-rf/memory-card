@@ -1,69 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Header from './components/Header';
-import Gameboard from './components/Gameboard';
-import Scoreboard from './components/Scoreboard';
-import Gameover from './components/Gameover';
-import { fetchData } from './helpers/FetchData';
-import { shuffleDeck } from './helpers/ShuffleDeck';
+import Gameboard from './components/Gameboard/Gameboard';
+import Header from './components/Header/Header';
+import { shuffleDeck } from './utils/shuffleDeck';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { useEffect } from 'react';
+import Gameover from './components/Gameover/Gameover';
 
-export default function App() {
+function App() {
+  const { isLoading, error, data } = useQuery('mortys', () =>
+    axios('https://rickandmortyapi.com/api/character/?name=morty&status=alive')
+  );
   const [deck, setDeck] = useState([]);
-  const [currentScore, setCurrentScore] = useState(0);
+  const [picks, setPicks] = useState([]);
+  const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [pickedCards, setPickedCards] = useState([]);
-  const [mode, setMode] = useState(true);
-
-  const playNextRound = () => {
-    setCurrentScore(currentScore + 1);
-    setDeck(shuffleDeck(deck));
-  };
-
-  const gameover = () => {
-    if (currentScore > highScore) setHighScore(currentScore);
-    setMode(false);
-  };
-
-  const restartGame = () => {
-    setCurrentScore(0);
-    setPickedCards([]);
-    setDeck(shuffleDeck(deck));
-    setMode(true);
-  };
-
-  const handleClick = (e) => {
-    if (pickedCards.includes(e.target.id)) {
-      gameover();
-    } else {
-      setPickedCards(pickedCards.concat(e.target.id));
-      playNextRound();
-    }
-  };
+  const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
-    fetchData().then((newData) => {
-      setDeck(shuffleDeck(newData));
-    });
-  }, []); //shuffle new deck on mount
+    setDeck(data?.data.results);
+  }, [data]);
 
-  useEffect(() => {
-    if (currentScore === 20) gameover();
-  }); //check if you win
+  const playRound = (id) => {
+    setDeck((prevState) => shuffleDeck(prevState));
+    if (picks.includes(id)) return gameOver();
+    setPicks(picks.concat(id));
+    setScore((prevState) => prevState + 1);
+  };
+
+  const gameOver = () => {
+    setScore(0);
+    setPicks([]);
+    if (score > highScore) setHighScore(score);
+    return setPlaying(false);
+  };
+
+  if (error) return <h1>{error.message}</h1>;
 
   return (
     <div className="App">
-      <div className="top-nav">
-        <Header />
-        <Scoreboard currentScore={currentScore} highScore={highScore} />
-      </div>
-      {mode ? (
-        <Gameboard deck={deck} handleClick={handleClick} />
+      <Header score={score} highScore={highScore} />
+      {playing ? (
+        isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <Gameboard data={deck} playRound={playRound} />
+        )
       ) : (
-        <Gameover
-          restartGame={restartGame}
-          currentScore={currentScore}
-        ></Gameover>
+        <Gameover setPlaying={setPlaying} />
       )}
     </div>
   );
 }
+
+export default App;
