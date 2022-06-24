@@ -1,11 +1,12 @@
 import React from 'react';
+import { CardWrapper } from './Card.style';
 
 function Card({ morty, playRound }) {
   return (
-    <div className="card" key={morty.id} onClick={playRound}>
+    <CardWrapper key={morty.id} onClick={playRound}>
       <img src={morty.image} alt={morty.name} />
       <p>{morty.name}</p>
-    </div>
+    </CardWrapper>
   );
 }
 
