@@ -6,6 +6,7 @@ import { shuffleDeck } from './utils/shuffleDeck';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useEffect } from 'react';
+import Gameover from './components/Gameover/Gameover';
 
 function App() {
   const { isLoading, error, data } = useQuery('mortys', () =>
@@ -15,6 +16,8 @@ function App() {
   const [picks, setPicks] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [playing, setPlaying] = useState(true);
+
   useEffect(() => {
     setDeck(data?.data.results);
   }, [data]);
@@ -30,7 +33,7 @@ function App() {
     setScore(0);
     setPicks([]);
     if (score > highScore) setHighScore(score);
-    return alert('gameover');
+    return setPlaying(false);
   };
 
   if (error) return <h1>{error.message}</h1>;
@@ -38,10 +41,14 @@ function App() {
   return (
     <div className="App">
       <Header score={score} highScore={highScore} />
-      {isLoading ? (
-        <div>Loading...</div>
+      {playing ? (
+        isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <Gameboard data={deck} playRound={playRound} />
+        )
       ) : (
-        <Gameboard data={deck} playRound={playRound} />
+        <Gameover setPlaying={setPlaying} />
       )}
     </div>
   );
