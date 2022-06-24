@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Gameboard from './components/Gameboard/Gameboard';
+import Header from './components/Header/Header';
 import { shuffleDeck } from './utils/shuffleDeck';
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -36,8 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2>Score: {score}</h2>
-      <h2>HighScore: {highScore}</h2>
+      <Header score={score} highScore={highScore} />
       {isLoading ? (
         <div>Loading...</div>
       ) : (

@@ -16,26 +16,8 @@ body {
   min-height: 100vh;
 }
 
-.gameboard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3rem;
-}
-.card {
-  cursor: pointer;
-  border: 0.5rem solid papayawhip;
-  border-radius: 1rem;
-  width: fit-content;
-}
-
-img {
-  height: 200px;
-}
-
-p {
-  text-align: center;
+h1,
+h2 {
   padding: 0;
   margin: 0;
 }
