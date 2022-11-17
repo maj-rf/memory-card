@@ -25,8 +25,9 @@ Basic Gameplay:
 
 ### Technologies
 
-1. `React` - `create-react-app`
-2. `styled-components`
-3. `react-query` and `axios` for data fetching
+1. `React` - `vite`
+2. `TypeScript`
+3. `TailwindCSS`
+4. `react-query` and `axios` for data fetching
 
 ---
